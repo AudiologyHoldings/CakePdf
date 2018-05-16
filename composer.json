@@ -2,7 +2,7 @@
 	"name": "audiologyholdings/cakepdf",
 	"type": "cakephp-plugin",
     "description": "CakePHP plugin for creating and/or rendering Pdf, several Pdf engines supported.",
-	"homepage": "https://github.com/FriendsOfCake/CakePdf",
+	"homepage": "https://github.com/AudiologyHoldings/CakePdf",
 	"license": "MIT",
 	"require": {
 		"php": ">=5.3.0",
