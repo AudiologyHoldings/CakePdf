@@ -16,7 +16,7 @@ Current engines:
 
 * PHP 5.2.8
 * CakePHP 2.1+
-* wkhtmltopdf (optional) See: http://code.google.com/p/wkhtmltopdf/
+* wkhtmltopdf (optional) See: http://wkhtmltopdf.org/
 * pdftk (optional) See: http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
 
@@ -49,7 +49,7 @@ _[Composer]_
 
 In your app directory type
 ```bash
-composer require friendsofcake/cake-pdf
+composer require friendsofcake/cakepdf
 ```
 
 ## Setup
@@ -68,7 +68,7 @@ The value for engine should have the `Plugin.ClassName` format without the Engin
 
 Configuration options:
 * engine: Engine to be used (required)
-* options: Engine options, this varies between Engines
+* options: Engine options, this may vary between Engines
 * pageSize: Change the default size, defaults to A4
 * orientation: Change the default orientation, defaults to potrait
 * margin: Array or margins with the keys: bottom, left, right, top and their values
@@ -98,7 +98,7 @@ Example:
             'top' => 45
         ),
         'orientation' => 'landscape',
-        'download' => true,
+        'download' => true
     ));
 ?>
 
@@ -119,6 +119,7 @@ Example:
         }
     }
 ?>
+```
 
 ## Header / Footer example in WkHtmlToPdfEngine
 
@@ -127,7 +128,7 @@ to pass in from the View level as well.
 
 *NOTE: for now, this is specific to `WkHtmlToPdfEngine` but we may abstract
 header/footer methods for other engines as well.*
-
+```
 <?php
     // app/View/Layouts/pdf/default.php
     $this->pdfOptions([
@@ -215,9 +216,7 @@ header/footer methods for other engines as well.*
     echo $this->Html->tag('strong', '#' . $invoice['Invoice']['id']);
     // .. rest of your view here ..
 ?>
-
 ```
-
 
 ## Usage
 
@@ -308,15 +307,14 @@ Use absolute URLs for static assets in your view templates for PDFs.
 If you use `HtmlHelper::image()`, `HtmlHelper::script()` or `HtmlHelper::css()` make sure you have `$options['fullBase'] = true`
 
 Another solution would be to create a `AppHelper` of which it would force `$options['fullBase'] = true` for PDF requests. e.g:
-
 ```php
 class AppHelper extends Helper {
     public function assetUrl($path, $options = array()) {
-        if (!empty($this->request->params['ext']) && $this->request->params['ext'] === 'pdf') {
-            $options['fullBase'] = true;
-        }
-        return parent::assetUrl($path, $options);
-    }
+    	if (!empty($this->request->params['ext']) && $this->request->params['ext'] === 'pdf') {
+			$options['fullBase'] = true;
+		}
+		return parent::assetUrl($path, $options);
+	}
 }
 ```
 

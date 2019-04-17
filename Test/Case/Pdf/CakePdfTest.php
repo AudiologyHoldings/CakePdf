@@ -35,16 +35,20 @@ class CakePdfTest extends CakeTestCase {
 		))));
 	}
 
-/**
- * Tests exception to be thrown for a non existing engine
- *
- * @expectedException CakeException
- */
-	public function testNonExistingEngineException() {
-		$config = array('engine' => 'NonExistingEngine');
+    /**
+     * Tests exception to be thrown for a non existing engine
+     */
+    public function testNonExistingEngineException() {
+        $config = array('engine' => 'NonExistingEngine');
 
-		$pdf = new CakePdf($config);
-	}
+        try{
+            $pdf = new CakePdf($config);
+            $this->fail('No exception thrown');
+        } catch(CakeException $e) {
+            $expected = 'Pdf engine "NonExistingEngine" not found';
+            $this->assertEquals($expected, $e->getMessage());
+        }
+    }
 
 /**
  * testOutput
